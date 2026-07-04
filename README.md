@@ -1,6 +1,6 @@
 # esp_driver_softspi
 
-基于 GPIO 位带操作的软件 SPI 主机驱动，用于 ESP32 系列芯片，API 命名风格对齐 ESP-IDF 官方 `esp_driver_spi` 驱动组件。
+基于 GPIO 位带操作的软件 SPI 主机驱动，用于 ESP32 系列芯片，API 命名风格对齐 ESP-IDF 官方 esp_driver_spi 驱动组件。
 
 当硬件 SPI 主机（SPI2/SPI3）资源不足时，可使用本组件通过任意 GPIO 引脚模拟 SPI 通信。
 
@@ -24,8 +24,6 @@ dependencies:
 ```
 
 然后运行 `idf.py build` 即可自动下载组件。
-
-> 上传到 ESP 组件仓库后，可直接使用 `idf.py add-dependency lee-stone/esp_driver_softspi^1.0.0`。
 
 ## 示例用法
 
