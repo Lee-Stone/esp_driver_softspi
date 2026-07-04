@@ -1,0 +1,6 @@
+version: "1.0.0"
+description: "Software SPI master using GPIO bit-banging for ESP32"
+url: "https://github.com/Lee-Stone/esp_driver_softspi"
+dependencies:
+  idf:
+    version: ">=4.1.0"
