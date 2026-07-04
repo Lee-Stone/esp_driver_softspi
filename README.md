@@ -15,17 +15,17 @@
 
 ## 添加组件到工程
 
-```bash
-idf.py add-dependency https://github.com/Lee-Stone/esp_driver_softspi.git
-```
-
-或手动编辑 `main/idf_component.yml`：
+编辑 `main/idf_component.yml`：
 
 ```yaml
 dependencies:
   lee-stone/esp_driver_softspi:
     git: https://github.com/Lee-Stone/esp_driver_softspi.git
 ```
+
+然后运行 `idf.py build` 即可自动下载组件。
+
+> 上传到 ESP 组件仓库后，可直接使用 `idf.py add-dependency lee-stone/esp_driver_softspi^1.0.0`。
 
 ## 示例用法
 
