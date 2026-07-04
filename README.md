@@ -30,10 +30,6 @@ dependencies:
     git: https://github.com/Lee-Stone/esp_driver_softspi.git
 ```
 
-## 支持的平台
-
-已在 ESP32-S3 上测试通过。其他 ESP32 系列芯片（ESP32 / ESP32-C3 / ESP32-C6 等）理论上均支持。
-
 ## 示例用法
 
 ### 初始化
@@ -66,6 +62,30 @@ softspi_transfer(7, tx, rx, 3);  // CS = GPIO7
 ```c
 ESP_ERROR_CHECK(softspi_bus_free());
 ```
+
+## 与 XPT2046 触摸屏配合使用
+
+本组件常用于释放硬件 SPI 主机给其他设备（如 SD 卡），同时用软件 SPI 驱动 XPT2046 触摸屏：
+
+```c
+// 1. 软件 SPI 总线
+softspi_bus_config_t bus_cfg = {
+    .sclk_io_num = 15,
+    .mosi_io_num = 6,
+    .miso_io_num = 5,
+};
+softspi_bus_initialize(&bus_cfg);
+
+// 2. 面板 IO（通过 esp_lcd_new_panel_io_softspi 桥接）
+esp_lcd_panel_io_handle_t io_handle = NULL;
+esp_lcd_panel_io_spi_config_t io_config = ESP_LCD_TOUCH_IO_SPI_XPT2046_CONFIG(7);
+esp_lcd_new_panel_io_softspi(&io_config, &io_handle);
+
+// 3. 官方 XPT2046 触摸驱动（无需硬件 SPI）
+esp_lcd_touch_new_spi_xpt2046(io_handle, &touch_cfg, &touch_handle);
+```
+
+> `esp_lcd_new_panel_io_softspi()` 函数在本工程 `components/touch_set/touch_set.c` 中实现，可根据需要复用。
 
 ## 注意事项
 
