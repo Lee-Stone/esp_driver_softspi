@@ -16,14 +16,15 @@
 ## 添加组件到工程
 
 ```bash
-idf.py add-dependency lee-stone/esp_driver_softspi^1.0.0
+idf.py add-dependency https://github.com/Lee-Stone/esp_driver_softspi.git
 ```
 
 或手动编辑 `main/idf_component.yml`：
 
 ```yaml
 dependencies:
-  lee-stone/esp_driver_softspi: "^1.0.0"
+  lee-stone/esp_driver_softspi:
+    git: https://github.com/Lee-Stone/esp_driver_softspi.git
 ```
 
 ## 示例用法
